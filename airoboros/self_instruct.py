@@ -1009,7 +1009,6 @@ class SelfInstructor:
         await self.initialize_topics()
         self.initialize_index()
 
-        breakpoint()
         self.temp_dir =  tempfile.TemporaryDirectory() 
         # Create a temporary file in the temporary directory
         self.output_path  = os.path.join(self.temp_dir.name, "instructions.jsonl")

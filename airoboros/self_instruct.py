@@ -1003,9 +1003,28 @@ class SelfInstructor:
 
         method_map = {
             "agent": agent_generator,
-            "awareness": awareness_generator
+            "awareness": awareness_generator,
+            "card": card_generator,
+            "coding": coding_generator,
+            "contextual": contextual_generator,
+            "cot": cot_generator,
+            "counterfactual_contextual": counterfactual_contextual_generator,
+            "detailed_writing": detailed_writing_generator,
+            "experience": experience_generator,
+            "general": general_generator,
+            "joke": joke_generator,
+            "misconception": misconception_generator,
+            "multiple_choice": multiple_choice_generator,
+            "plan": plan_generator,
+            "orca": orca_generator,
+            "riddle": riddle_generator,
+            "roleplay": roleplay_generator,
+            "rp": rp_generator,
+            "song": song_generator,
+            "trivia": trivia_generator,
+            "wordgame": wordgame_generator,
+            "writing": writing_generator,
         }
-
         await self.initialize_topics()
         self.initialize_index()
 
@@ -1047,17 +1066,18 @@ class SelfInstructor:
             method_map["stylized_response"] = stylized_response_generator
             method_map["gtkm"] = gtkm_generator
             self.outfile = open(self.output_path, "a+")
+
             tasks = []
             try:
-                tasks.append(
-                    asyncio.create_task(
-                        self.run_instructor(
-                            "stylized_response",
-                            method_map,
-                            existing=existing,
-                        )
-                    )
-                )
+                # tasks.append(
+                #     asyncio.create_task(
+                #         self.run_instructor(
+                #             "stylized_response",
+                #             method_map,
+                #             existing=existing,
+                #         )
+                #     )
+                # )
                 tasks.append(
                     asyncio.create_task(self.run_instructor("gtkm", method_map))
                 )
@@ -1067,9 +1087,7 @@ class SelfInstructor:
                 self.outfile.close()
 
         delta = (datetime.datetime.now() - started_at).total_seconds()
-        logger.success(
-            f"Finished generating all instructions in {delta} seconds, enjoy!"
-        )
+        print(f"Finished generating all instructions in {delta} seconds, enjoy!")
 
 
 def generate_instructions(args):
